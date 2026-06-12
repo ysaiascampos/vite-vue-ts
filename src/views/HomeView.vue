@@ -9,15 +9,14 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useAppStore } from '@/stores/app.store'
-import http from '@/http/client'
+import { getStatus } from '@/services/status.service'
 
 const appStore = useAppStore()
 const status = ref<string | null>(null)
 
 onMounted(async () => {
   try {
-    const response = await http.get('/status')
-    status.value = response.data.status
+    status.value = await getStatus()
   } catch {
     status.value = 'API no disponible'
   }
