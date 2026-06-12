@@ -12,4 +12,15 @@ export default defineConfig({
         .replace(/\\/g, '/'), // Reemplaza las barras invertidas por barras normales
     },
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        rewrite: (path) => path, // 👈 mantenemos /api
+      },
+    },
+  },
+
+
 })
