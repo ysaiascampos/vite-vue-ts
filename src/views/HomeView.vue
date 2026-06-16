@@ -14,6 +14,12 @@
 import { onMounted } from 'vue'
 import { useAppStore } from '@/stores/app.store'
 import { useStatusStore } from '@/stores/status.store'
+import { on } from '@/core/events'
+
+on('unauthorized', () => {
+  console.log('Evento global: usuario no autenticado')
+})
+
 
 const appStore = useAppStore()
 const statusStore = useStatusStore()
